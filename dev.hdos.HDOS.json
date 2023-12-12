@@ -6,7 +6,7 @@
     "command": "hdos",
     "separate-locales": false,
     "sdk-extensions": [
-        "org.freedesktop.Sdk.Extension.openjdk11"
+        "org.freedesktop.Sdk.Extension.openjdk17"
     ],
     "finish-args": [
         "--share=ipc",
@@ -25,7 +25,16 @@
             "name": "openjdk",
             "buildsystem": "simple",
             "build-commands": [
-                "/usr/lib/sdk/openjdk11/install.sh"
+                "/usr/lib/sdk/openjdk17/install.sh",
+                "mv /app/jre/bin/java /app/jre/bin/java.bk",
+                "mv java /app/jre/bin/java",
+                "chmod +x /app/jre/bin/java"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "path": "java"
+                }
             ]
         },
         {
